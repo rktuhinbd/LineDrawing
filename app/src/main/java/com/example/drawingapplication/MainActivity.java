@@ -1,31 +1,38 @@
 package com.example.drawingapplication;
 
-import android.graphics.PointF;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    private LineView mLineView;
+    private ArrayList<LineModel> lines;
+    private com.example.drawingapplication.DrawView drawView;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-        mLineView = findViewById(R.id.lineView);
+        int transparentColor = 0xCC000000;
 
-        PointF pointA = new PointF(100, 500);
-        PointF pointB = new PointF(500, 500);
+        drawView = findViewById(R.id.view);
+        drawView.setBackgroundColor(transparentColor);
+        drawView.setBackground(getResources().getDrawable(R.drawable.ic_launcher_background));
 
-        mLineView.setPointX(pointA);
+        lines = new ArrayList();
 
-        mLineView.setPointY(pointB);
+        lines.add(new LineModel(0, 0, 200, 200));
+        lines.add(new LineModel(200, 0, 0, 200));
+        lines.add(new LineModel(0, 200, 200, 400));
+        lines.add(new LineModel(200, 200, 0, 400));
+        lines.add(new LineModel(0, 400, 200, 600));
+        lines.add(new LineModel(200, 400, 0, 600));
 
-        mLineView.draw();
-
+        drawView.DrawLine(lines);
     }
 }

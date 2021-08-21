@@ -1,4 +1,4 @@
-package com.example.drawingapplication;
+package com.example.drawingapplication.model;
 
 public class LineModel {
 

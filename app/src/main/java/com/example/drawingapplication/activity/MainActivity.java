@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.drawingapplication.R;
 import com.example.drawingapplication.model.DrawingModel;
 import com.example.drawingapplication.model.LineModel;
-import com.example.drawingapplication.model.LinesData;
 import com.example.drawingapplication.model.Plot;
 import com.example.drawingapplication.utils.DrawView;
 import com.google.gson.GsonBuilder;
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity implements View {
 
     private Presenter presenter;
 
-    private List<Plot> plots = new ArrayList();
-    private List<LineModel> lineModel = new ArrayList();
+    private List<Plot> plotList = new ArrayList();
+    private List<LineModel> lineList = new ArrayList();
     private DrawView drawView;
 
     int scaleX;
@@ -55,319 +54,316 @@ public class MainActivity extends AppCompatActivity implements View {
         scaleY = height / 600;
 
         presenter.getDrawingLines();
-//        lines.add(new LineModel(0, 10, 200, 10));
-//        lines.add(new LineModel(100, 200, 300, 200));
-//        lines.add(new LineModel(200, 400, 400, 400));
-//        lines.add(new LineModel(300, 600, 500, 600));
-//        lines.add(new LineModel(400, 800, 600, 800));
-//        lines.add(new LineModel(500, 1000, 700, 1000));
 
-//        startX = 339 * scaleX;
-//        startY = 228 * scaleY;
-//        endX = 340 * scaleX;
-//        endY = 228 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 340 * scaleX;
-//        startY = 228 * scaleY;
-//        endX = 343 * scaleX;
-//        endY = 228 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 343 * scaleX;
-//        startY = 228 * scaleY;
-//        endX = 347 * scaleX;
-//        endY = 228 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 347 * scaleX;
-//        startY = 228 * scaleY;
-//        endX = 352 * scaleX;
-//        endY = 228 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 352 * scaleX;
-//        startY = 228 * scaleY;
-//        endX = 372 * scaleX;
-//        endY = 231 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 375 * scaleX;
-//        startY = 233 * scaleY;
-//        endX = 378 * scaleX;
-//        endY = 233 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 382 * scaleX;
-//        startY = 235 * scaleY;
-//        endX = 384 * scaleX;
-//        endY = 237 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 387 * scaleX;
-//        startY = 238 * scaleY;
-//        endX = 389 * scaleX;
-//        endY = 240 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 391 * scaleX;
-//        startY = 241 * scaleY;
-//        endX = 393 * scaleX;
-//        endY = 243 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 395 * scaleX;
-//        startY = 245 * scaleY;
-//        endX = 397 * scaleX;
-//        endY = 249 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 399 * scaleX;
-//        startY = 252 * scaleY;
-//        endX = 402 * scaleX;
-//        endY = 255 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 408 * scaleX;
-//        startY = 265 * scaleY;
-//        endX = 410 * scaleX;
-//        endY = 270 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 411 * scaleX;
-//        startY = 277 * scaleY;
-//        endX = 411 * scaleX;
-//        endY = 279 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 412 * scaleX;
-//        startY = 283 * scaleY;
-//        endX = 413 * scaleX;
-//        endY = 287 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 413 * scaleX;
-//        startY = 292 * scaleY;
-//        endX = 413 * scaleX;
-//        endY = 298 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 413 * scaleX;
-//        startY = 302 * scaleY;
-//        endX = 413 * scaleX;
-//        endY = 308 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 412 * scaleX;
-//        startY = 312 * scaleY;
-//        endX = 409 * scaleX;
-//        endY = 319 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 408 * scaleX;
-//        startY = 321 * scaleY;
-//        endX = 404 * scaleX;
-//        endY = 327 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 402 * scaleX;
-//        startY = 330 * scaleY;
-//        endX = 400 * scaleX;
-//        endY = 332 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 399 * scaleX;
-//        startY = 332 * scaleY;
-//        endX = 398 * scaleX;
-//        endY = 332 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 397 * scaleX;
-//        startY = 332 * scaleY;
-//        endX = 395 * scaleX;
-//        endY = 332 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 391 * scaleX;
-//        startY = 332 * scaleY;
-//        endX = 386 * scaleX;
-//        endY = 332 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 381 * scaleX;
-//        startY = 330 * scaleY;
-//        endX = 376 * scaleX;
-//        endY = 328 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 370 * scaleX;
-//        startY = 325 * scaleY;
-//        endX = 366 * scaleX;
-//        endY = 322 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 363 * scaleX;
-//        startY = 320 * scaleY;
-//        endX = 361 * scaleX;
-//        endY = 318 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 359 * scaleX;
-//        startY = 315 * scaleY;
-//        endX = 357 * scaleX;
-//        endY = 313 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 356 * scaleX;
-//        startY = 312 * scaleY;
-//        endX = 356 * scaleX;
-//        endY = 309 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 355 * scaleX;
-//        startY = 305 * scaleY;
-//        endX = 355 * scaleX;
-//        endY = 302 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 355 * scaleX;
-//        startY = 298 * scaleY;
-//        endX = 355 * scaleX;
-//        endY = 295 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 355 * scaleX;
-//        startY = 294 * scaleY;
-//        endX = 357 * scaleX;
-//        endY = 293 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 359 * scaleX;
-//        startY = 292 * scaleY;
-//        endX = 360 * scaleX;
-//        endY = 291 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 362 * scaleX;
-//        startY = 289 * scaleY;
-//        endX = 365 * scaleX;
-//        endY = 288 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 368 * scaleX;
-//        startY = 287 * scaleY;
-//        endX = 370 * scaleX;
-//        endY = 286 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 372 * scaleX;
-//        startY = 286 * scaleY;
-//        endX = 374 * scaleX;
-//        endY = 287 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 377 * scaleX;
-//        startY = 288 * scaleY;
-//        endX = 381 * scaleX;
-//        endY = 290 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 384 * scaleX;
-//        startY = 292 * scaleY;
-//        endX = 388 * scaleX;
-//        endY = 295 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 390 * scaleX;
-//        startY = 296 * scaleY;
-//        endX = 392 * scaleX;
-//        endY = 299 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 393 * scaleX;
-//        startY = 300 * scaleY;
-//        endX = 393 * scaleX;
-//        endY = 302 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 393 * scaleX;
-//        startY = 304 * scaleY;
-//        endX = 394 * scaleX;
-//        endY = 306 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 394 * scaleX;
-//        startY = 309 * scaleY;
-//        endX = 394 * scaleX;
-//        endY = 310 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 394 * scaleX;
-//        startY = 312 * scaleY;
-//        endX = 393 * scaleX;
-//        endY = 316 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 393 * scaleX;
-//        startY = 320 * scaleY;
-//        endX = 391 * scaleX;
-//        endY = 325 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 390 * scaleX;
-//        startY = 328 * scaleY;
-//        endX = 389 * scaleX;
-//        endY = 329 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 389 * scaleX;
-//        startY = 330 * scaleY;
-//        endX = 389 * scaleX;
-//        endY = 330 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 389 * scaleX;
-//        startY = 331 * scaleY;
-//        endX = 389 * scaleX;
-//        endY = 331 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 388 * scaleX;
-//        startY = 331 * scaleY;
-//        endX = 387 * scaleX;
-//        endY = 331 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 386 * scaleX;
-//        startY = 331 * scaleY;
-//        endX = 385 * scaleX;
-//        endY = 331 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
-//
-//        startX = 382 * scaleX;
-//        startY = 330 * scaleY;
-//        endX = 382 * scaleX;
-//        endY = 330 * scaleY;
-//        lines.add(new LineModel(startX, startY, endX, endY));
+        startX = 236 * scaleX;
+        startY = 147 * scaleY;
+        endX = 284 * scaleX;
+        endY = 147 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
 
+        startX = 284 * scaleX;
+        startY = 147 * scaleY;
+        endX = 330 * scaleX;
+        endY = 150 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 330 * scaleX;
+        startY = 150 * scaleY;
+        endX = 345 * scaleX;
+        endY = 152 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 345 * scaleX;
+        startY = 152 * scaleY;
+        endX = 354 * scaleX;
+        endY = 155 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 354 * scaleX;
+        startY = 155 * scaleY;
+        endX = 367 * scaleX;
+        endY = 159 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 367 * scaleX;
+        startY = 159 * scaleY;
+        endX = 370 * scaleX;
+        endY = 160 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 370 * scaleX;
+        startY = 160 * scaleY;
+        endX = 375 * scaleX;
+        endY = 162 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 375 * scaleX;
+        startY = 162 * scaleY;
+        endX = 379 * scaleX;
+        endY = 165 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 379 * scaleX;
+        startY = 165 * scaleY;
+        endX = 388 * scaleX;
+        endY = 175 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 388 * scaleX;
+        startY = 175 * scaleY;
+        endX = 389 * scaleX;
+        endY = 178 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 389 * scaleX;
+        startY = 178 * scaleY;
+        endX = 391 * scaleX;
+        endY = 186 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 391 * scaleX;
+        startY = 186 * scaleY;
+        endX = 391 * scaleX;
+        endY = 194 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 391 * scaleX;
+        startY = 194 * scaleY;
+        endX = 391 * scaleX;
+        endY = 211 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 391 * scaleX;
+        startY = 211 * scaleY;
+        endX = 390 * scaleX;
+        endY = 216 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 390 * scaleX;
+        startY = 216 * scaleY;
+        endX = 389 * scaleX;
+        endY = 221 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 389 * scaleX;
+        startY = 221 * scaleY;
+        endX = 387 * scaleX;
+        endY = 226 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 387 * scaleX;
+        startY = 226 * scaleY;
+        endX = 384 * scaleX;
+        endY = 230 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 384 * scaleX;
+        startY = 230 * scaleY;
+        endX = 382 * scaleX;
+        endY = 234 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 382 * scaleX;
+        startY = 234 * scaleY;
+        endX = 380 * scaleX;
+        endY = 237 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 380 * scaleX;
+        startY = 237 * scaleY;
+        endX = 377 * scaleX;
+        endY = 240 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 377 * scaleX;
+        startY = 240 * scaleY;
+        endX = 374 * scaleX;
+        endY = 243 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 374 * scaleX;
+        startY = 243 * scaleY;
+        endX = 370 * scaleX;
+        endY = 245 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 370 * scaleX;
+        startY = 245 * scaleY;
+        endX = 366 * scaleX;
+        endY = 248 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 366 * scaleX;
+        startY = 248 * scaleY;
+        endX = 361 * scaleX;
+        endY = 250 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 361 * scaleX;
+        startY = 250 * scaleY;
+        endX = 355 * scaleX;
+        endY = 252 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 355 * scaleX;
+        startY = 252 * scaleY;
+        endX = 353 * scaleX;
+        endY = 253 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 353 * scaleX;
+        startY = 253 * scaleY;
+        endX = 348 * scaleX;
+        endY = 253 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 348 * scaleX;
+        startY = 253 * scaleY;
+        endX = 346 * scaleX;
+        endY = 253 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 346 * scaleX;
+        startY = 253 * scaleY;
+        endX = 344 * scaleX;
+        endY = 253 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 344 * scaleX;
+        startY = 253 * scaleY;
+        endX = 342 * scaleX;
+        endY = 253 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 342 * scaleX;
+        startY = 253 * scaleY;
+        endX = 341 * scaleX;
+        endY = 253 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 341 * scaleX;
+        startY = 253 * scaleY;
+        endX = 339 * scaleX;
+        endY = 252 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 339 * scaleX;
+        startY = 252 * scaleY;
+        endX = 339 * scaleX;
+        endY = 251 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 339 * scaleX;
+        startY = 251 * scaleY;
+        endX = 338 * scaleX;
+        endY = 250 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 338 * scaleX;
+        startY = 250 * scaleY;
+        endX = 337 * scaleX;
+        endY = 249 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 337 * scaleX;
+        startY = 249 * scaleY;
+        endX = 336 * scaleX;
+        endY = 247 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 336 * scaleX;
+        startY = 247 * scaleY;
+        endX = 336 * scaleX;
+        endY = 244 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 336 * scaleX;
+        startY = 244 * scaleY;
+        endX = 334 * scaleX;
+        endY = 241 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 334 * scaleX;
+        startY = 241 * scaleY;
+        endX = 334 * scaleX;
+        endY = 237 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 334 * scaleX;
+        startY = 237 * scaleY;
+        endX = 334 * scaleX;
+        endY = 236 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 334 * scaleX;
+        startY = 236 * scaleY;
+        endX = 334 * scaleX;
+        endY = 234 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 393 * scaleX;
+        startY = 320 * scaleY;
+        endX = 391 * scaleX;
+        endY = 325 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 390 * scaleX;
+        startY = 328 * scaleY;
+        endX = 389 * scaleX;
+        endY = 329 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 389 * scaleX;
+        startY = 330 * scaleY;
+        endX = 389 * scaleX;
+        endY = 330 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 389 * scaleX;
+        startY = 331 * scaleY;
+        endX = 389 * scaleX;
+        endY = 331 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 388 * scaleX;
+        startY = 331 * scaleY;
+        endX = 387 * scaleX;
+        endY = 331 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 386 * scaleX;
+        startY = 331 * scaleY;
+        endX = 385 * scaleX;
+        endY = 331 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        startX = 382 * scaleX;
+        startY = 330 * scaleY;
+        endX = 382 * scaleX;
+        endY = 330 * scaleY;
+        lineList.add(new LineModel(startX, startY, endX, endY));
+
+        drawView.DrawLine(lineList);
 
     }
 
     @Override
-    public void onGetDrawingList(DrawingModel lines) {
-        Log.e("API Data", new GsonBuilder().setPrettyPrinting().create().toJson(lines));
+    public void onGetDrawingList(DrawingModel result) {
+        Log.e("API Data", new GsonBuilder().setPrettyPrinting().create().toJson(result));
 
-        plots = lines.getData().get(0).getPlots();
+        plotList = result.getData().get(0).getPlots();
 
-        for (int i = 0; i < plots.size() - 1; i++) {
-            startX = plots.get(i).getX() * scaleX;
-            startY = plots.get(i).getY() * scaleY;
-            endX = plots.get(i + 1).getX() * scaleX;
-            endY = plots.get(i + 1).getY() * scaleY;
-            lineModel.add(new LineModel(startX, startY, endX, endY));
-        }
+            for (int i = 1; i < plotList.size(); i++){
+                startX = plotList.get(i - 1).getX() * scaleX;
+                startY = plotList.get(i - 1).getY() * scaleY;
+                endX =plotList.get(i).getX() * scaleX;
+                endY = plotList.get(i).getY() * scaleY;
+                lineList.add(new LineModel(startX, startY, endX, endY));
+            }
 
-        drawView.DrawLine(lineModel);
+        Log.e("lineList", new GsonBuilder().setPrettyPrinting().create().toJson(lineList));
+
+        drawView.DrawLine(lineList);
 
     }
 }

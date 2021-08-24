@@ -12,6 +12,7 @@ import com.example.drawingapplication.model.DrawingModel;
 import com.example.drawingapplication.model.LineModel;
 import com.example.drawingapplication.model.Plot;
 import com.example.drawingapplication.utils.DrawView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View {
 
     private FrameLayout view;
     private DrawView drawView;
+    private FloatingActionButton fab;
 
     // = = = Declare Data Properties = = = //
 
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View {
 
         view = findViewById(R.id.view);
 
+        fab = findViewById(R.id.fab);
+
         drawView = new DrawView(this);
 
         presenter = new Presenter(this, this);
@@ -73,6 +77,11 @@ public class MainActivity extends AppCompatActivity implements View {
 
         presenter.getDrawingLines();
 
+        fab.setOnClickListener(v -> {
+            Log.e("Data refreshed", "SuccessfulRR®");
+            presenter.getDrawingLines();
+        });
+
     }
 
     @Override
@@ -91,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View {
 
         //Log.e("Plot List", new GsonBuilder().setPrettyPrinting().create().toJson(lineList));
 
+        view.removeView(drawView);
         view.addView(drawView);
         drawView.DrawLine(lineList);
 

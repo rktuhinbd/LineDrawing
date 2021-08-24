@@ -15,6 +15,7 @@ import java.util.List;
 public class DrawView extends androidx.appcompat.widget.AppCompatImageView {
 
     Paint paint = new Paint();
+    Canvas canvas;
 
     List<LineModel> lines = new ArrayList<>();
 
@@ -45,6 +46,8 @@ public class DrawView extends androidx.appcompat.widget.AppCompatImageView {
 
     @Override
     public void onDraw(Canvas canvas) {
+        this.canvas = canvas;
+        Log.e("Lines drawn", "called" );
         for (int i = 0; i < lines.size(); i++) {
             startX = lines.get(i).getStartX();
             startY = lines.get(i).getStartY();

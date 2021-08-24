@@ -45,6 +45,7 @@ public class DrawView extends androidx.appcompat.widget.AppCompatImageView {
 
     @Override
     public void onDraw(Canvas canvas) {
+
         for (int i = 0; i < lines.size(); i++) {
             startX = lines.get(i).getStartX();
             startY = lines.get(i).getStartY();

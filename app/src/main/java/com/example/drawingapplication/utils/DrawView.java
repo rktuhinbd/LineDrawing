@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 
 import com.example.drawingapplication.model.PlotModel;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,7 @@ public class DrawView extends androidx.appcompat.widget.AppCompatImageView {
 
             canvas.drawLine(startX, startY, endX, endY, paint);
 
-            Log.e("Lines drawn", "" + i);
+//            Log.e("Lines drawn", "" + i);
         }
     }
 

@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.drawingapplication.R;
 import com.example.drawingapplication.model.DrawingModel;
+import com.example.drawingapplication.model.LinesData;
 import com.example.drawingapplication.model.PlotModel;
 import com.example.drawingapplication.model.Plot;
 import com.example.drawingapplication.utils.DrawView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View {
 
     private Presenter presenter;
 
+    private List<LinesData> lineData = new ArrayList();
     private List<Plot> plotList = new ArrayList();
     private List<PlotModel> lineList = new ArrayList();
 
@@ -88,7 +91,10 @@ public class MainActivity extends AppCompatActivity implements View {
     public void onGetDrawingList(DrawingModel result) {
 //        Log.e("API Data", new GsonBuilder().setPrettyPrinting().create().toJson(result));
 
-        for (int i = 0; i < plotList.size(); i++) {
+        lineData = result.getData();
+
+        for (int i = 0; i < lineData.size(); i++) {
+
             plotList = result.getData().get(i).getPlots();
 
             if (!result.getData().get(i).getIsEraser()) {

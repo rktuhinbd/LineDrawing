@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.drawingapplication.R;
 import com.example.drawingapplication.model.DrawingModel;
-import com.example.drawingapplication.model.LineModel;
+import com.example.drawingapplication.model.LinesData;
+import com.example.drawingapplication.model.PlotModel;
 import com.example.drawingapplication.model.Plot;
 import com.example.drawingapplication.utils.DrawView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
@@ -24,13 +26,15 @@ public class MainActivity extends AppCompatActivity implements View {
 
     private FrameLayout view;
     private DrawView drawView;
+    private FloatingActionButton fab;
 
     // = = = Declare Data Properties = = = //
 
     private Presenter presenter;
 
+    private List<LinesData> lineData = new ArrayList();
     private List<Plot> plotList = new ArrayList();
-    private List<LineModel> lineList = new ArrayList();
+    private List<PlotModel> lineList = new ArrayList();
 
     int scaleX;
     int scaleY;
@@ -50,10 +54,13 @@ public class MainActivity extends AppCompatActivity implements View {
 
         view = findViewById(R.id.view);
 
+        fab = findViewById(R.id.fab);
+
         drawView = new DrawView(this);
 
         presenter = new Presenter(this, this);
 
+        view.addView(drawView);
 
         // = = = Getting display measurement = = = //
 
@@ -73,26 +80,46 @@ public class MainActivity extends AppCompatActivity implements View {
 
         presenter.getDrawingLines();
 
+        fab.setOnClickListener(v -> {
+            Log.e("Data refreshed", "Successful...");
+            presenter.getDrawingLines();
+        });
+
     }
 
     @Override
     public void onGetDrawingList(DrawingModel result) {
 //        Log.e("API Data", new GsonBuilder().setPrettyPrinting().create().toJson(result));
 
-        plotList = result.getData().get(0).getPlots();
+        lineData = result.getData();
 
-        for (int i = 1; i < plotList.size(); i++) {
-            startX = plotList.get(i - 1).getX() * scaleX;
-            startY = plotList.get(i - 1).getY() * scaleY;
-            endX = plotList.get(i).getX() * scaleX;
-            endY = plotList.get(i).getY() * scaleY;
-            lineList.add(new LineModel(startX, startY, endX, endY));
+        for (int i = 0; i < lineData.size(); i++) {
+
+            plotList = result.getData().get(i).getPlots();
+
+            if (!result.getData().get(i).getIsEraser()) {
+                for (int j = 1; j < plotList.size(); j++) {
+                    startX = plotList.get(j - 1).getX() * scaleX;
+                    startY = plotList.get(j - 1).getY() * scaleY;
+                    endX = plotList.get(j).getX() * scaleX;
+                    endY = plotList.get(j).getY() * scaleY;
+                    lineList.add(new PlotModel(startX, startY, endX, endY));
+                }
+                view.removeView(drawView);
+                view.addView(drawView);
+                drawView.DrawLine(false, result.getData().get(i).getColor(), lineList);
+            } else {
+                for (int j = 1; j < plotList.size(); j++) {
+                    startX = plotList.get(j - 1).getX() * scaleX;
+                    startY = plotList.get(j - 1).getY() * scaleY;
+                    endX = plotList.get(j).getX() * scaleX;
+                    endY = plotList.get(j).getY() * scaleY;
+                    lineList.add(new PlotModel(startX, startY, endX, endY));
+                }
+                view.removeView(drawView);
+                view.addView(drawView);
+                drawView.DrawLine(true, "transparent", lineList);
+            }
         }
-
-        //Log.e("Plot List", new GsonBuilder().setPrettyPrinting().create().toJson(lineList));
-
-        view.addView(drawView);
-        drawView.DrawLine(lineList);
-
     }
 }

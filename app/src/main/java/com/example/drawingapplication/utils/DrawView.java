@@ -7,7 +7,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import com.example.drawingapplication.model.LineModel;
+import com.example.drawingapplication.model.PlotModel;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class DrawView extends androidx.appcompat.widget.AppCompatImageView {
 
     Paint paint = new Paint();
 
-    List<LineModel> lines = new ArrayList<>();
+    List<PlotModel> lines = new ArrayList<>();
 
     float startX;
     float startY;
@@ -54,11 +55,41 @@ public class DrawView extends androidx.appcompat.widget.AppCompatImageView {
 
             canvas.drawLine(startX, startY, endX, endY, paint);
 
-            Log.e("Lines drawn", "" + i);
+//            Log.e("Lines drawn", "" + i);
         }
     }
 
-    public void DrawLine(List<LineModel> lines) {
+    public void DrawLine(Boolean erase, String textColor, List<PlotModel> lines) {
+
+        if (erase) {
+            paint.setColor(Color.TRANSPARENT);
+        } else {
+            switch (textColor) {
+                case "green":
+                    paint.setColor(Color.GREEN);
+                    break;
+                case "blue":
+                    paint.setColor(Color.BLUE);
+                    break;
+                case "yellow":
+                    paint.setColor(Color.YELLOW);
+                    break;
+                case "black":
+                    paint.setColor(Color.BLACK);
+                    break;
+                case "white":
+                    paint.setColor(Color.WHITE);
+                    break;
+                case "transparent":
+                    paint.setColor(Color.TRANSPARENT);
+                    break;
+                case "red":
+                default:
+                    paint.setColor(Color.RED);
+                    break;
+            }
+        }
+
         this.lines = lines;
     }
 

@@ -1,16 +1,16 @@
 package com.example.drawingapplication.model;
 
-public class LineModel {
+public class PlotModel {
 
     private int startX;
     private int startY;
     private int endX;
     private int endY;
 
-    public LineModel() {
+    public PlotModel() {
     }
 
-    public LineModel(int startX, int startY, int endX, int endY) {
+    public PlotModel(int startX, int startY, int endX, int endY) {
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
